@@ -26,7 +26,8 @@ Built for the IEEE CS [ticket exchange project](https://github.com/anuvgupta/tic
 -   Ensure the folder `/var/log/mongodb` exists
 -   Ensure ports 8000 & 27017 (or as configured) are unused
 -   Start MongoDB with configuration
-    -   ie. `mongod --config /home/ubuntu/node-scaffold/mongodb/mongo-dev.conf`
+    -   ie. `mongod --config /home/ubuntu/node-scaffold/mongodb/mongo-prod.conf`
+    -   ie. `mongod --config /Users/anuv/Documents/GitHub/node-scaffold/mongodb/mongo-dev.conf`
 -   Start Node.js server
     -   ie. `npm test` or `npm start`
 -   Try out CLI example in the node prompt
