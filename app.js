@@ -8,6 +8,7 @@ const path = require("path");
 const http = require("http");
 const express = require("express");
 const mongodb = require('mongodb');
+const rn = require('random-number');
 const readline = require("readline");
 const body_parser = require("body-parser");
 
@@ -15,8 +16,9 @@ const body_parser = require("body-parser");
 // set up environment
 global.args = process.argv.slice(2);
 global.env = process.argv.slice(2)[0] == "prod" ? "prod" : "dev";
-global.http_port = global.env == "dev" ? 8000 : /* [[HTTP_PORT]] */ 80;
-global.mdb_port = global.env == "dev" ? 27017 : /* [[MONGO_PORT]] */ 3000;
+global.http_port = global.env == "dev" ? 8000 : /* [[HTTP_PORT]] */ 3000;
+global.ws_port = global.env == "dev" ? 8080 :  /* [[WEBSOCKET_PORT]] */ 3001;
+global.mdb_port = global.env == "dev" ? 27017 : /* [[MONGO_PORT]] */ 3002;
 global.mdb_db = /* [[MONGO_DBNAME]] */ "node-scaffold";
 
 /* MODULES */
@@ -44,4 +46,19 @@ for (var module_id in modules) {
         typeof modules[module_id].init === 'function' && module_id != "utils")
         modules[module_id].init(module_id);
 }
+process.on('exit', _ => {
+    console.log('[process] exit');
+});
+process.on('SIGINT', _ => {
+    console.log('[process] interrupt');
+    modules.main.api.exit();
+});
+process.on('SIGUSR1', _ => {
+    console.log('[process] restart 1');
+    modules.main.api.exit();
+});
+process.on('SIGUSR2', _ => {
+    console.log('[process] restart 2');
+    modules.main.api.exit();
+});
 modules.utils.delay(modules.main.main, 500);

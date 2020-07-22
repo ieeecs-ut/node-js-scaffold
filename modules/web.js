@@ -68,7 +68,9 @@ module.exports = {
         });
         module.exports.api.exit = resolve => {
             log("exit");
-            http_server.close(resolve);
+            http_server.close(_ => {
+                if (resolve) resolve();
+            });
         };
         init();
         // open server

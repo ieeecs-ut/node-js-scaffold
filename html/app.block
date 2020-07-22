@@ -13,4 +13,57 @@ app
         margin 0 auto
         box-sizing border-box
         position relative
-    
+    #example
+        {
+            if (example == "foo")
+                app.ws.send("example", "bar");
+            $("#output2").html(`socket example: ${example}`);
+        }
+    {
+        window.ajax_test = _ => {
+            var table = prompt('Table/collection name: ');
+            if (table && table.trim() != '') {
+                $.ajax({
+                    type: 'post',
+                    data: {
+                        name: table
+                    },
+                    error: (xhr, status, error) => {
+                        console.log(status, xhr.status, error);
+                        $("#output1").html(`${status} ${xhr.status}<br/>${error}`);
+                    },
+                    success: (result, status, xhr) => {
+                        result = JSON.stringify(result, null, 2);
+                        console.log(status, xhr.status, result);
+                        $("#output1").html(`${status} ${xhr.status}<br/>${result}`);
+                    }
+                });
+            }
+        }
+    }
+    html
+        `
+            <h1 style="padding-top: 30px;">node-scaffold</h1>
+            <p>
+                <i
+                    >This code is a scaffold (skeleton) for a web application stack<br/>
+                    built with Node.js, Express, MongoDB, WebSockets, and
+                    block.js.</i
+                ><br />
+                <br />
+                Valid GET request: <a href="example1">example1</a>
+                <br />
+                Invalid GET request: <a href="example2">example2</a>
+                <br />
+                Valid POST request (MongoDB query): <a href="#" onclick="ajax_test()">example3</a>
+                <br />
+                <br/>
+                <div id = 'output1' style="font-family: 'Courier New', Courier, monospace;">
+                    output1
+                </div>
+                <br/>
+                <div id = 'output2' style="font-family: 'Courier New', Courier, monospace;">
+                    output2
+                </div>
+            </p>
+        `

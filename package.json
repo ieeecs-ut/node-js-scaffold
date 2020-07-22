@@ -5,7 +5,7 @@
     "main": "app.js",
     "scripts": {
         "start": "node app.js dev",
-        "test": "nodemon --ignore 'mongodb/*' --ignore 'html/*' --exec 'npm start' "
+        "test": "nodemon --ignore 'mongodb/*' --ignore 'html/*' app.js dev "
     },
     "author": "Anuv Gupta",
     "license": "ISC",
@@ -13,6 +13,7 @@
         "body-parser": "^1.19.0",
         "express": "^4.17.1",
         "mongodb": "^3.5.9",
+        "random-number": "0.0.9",
         "ws": "^7.3.1"
     },
     "devDependencies": {

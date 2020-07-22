@@ -50,9 +50,17 @@ module.exports = {
         err = m.utils.logger(id, true);
         log("initializing");
         module.exports.api.exit = (e = 0) => {
-            m.web.exit(_ => {
-                log("exit");
+            m.main.unload(_ => {
+                log('exit');
                 process.exit(e);
+            });
+        };
+        module.exports.api.unload = resolve => {
+            log("unload");
+            m.ws.exit(_ => {
+                m.web.exit(_ => {
+                    if (resolve) resolve();
+                });
             });
         };
         init();

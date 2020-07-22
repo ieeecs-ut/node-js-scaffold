@@ -27,7 +27,7 @@ var app = {
                 ? 'wss://'
                 : 'ws://') +
             document.domain +
-            (location.protocol === 'https:' ? ':443' : ':80') +
+            (document.domain == 'localhost' ? ':8080' : (location.protocol === 'https:' ? ':443' : ':80')) +
             '/socket',
         encode_msg: (e, d) => {
             return JSON.stringify({
@@ -94,7 +94,7 @@ var app = {
                         });
                     }, 'app', 'jQuery');
                 }, 'blocks', 'jQuery');
-            }, 50);
+            }, 300);
         }
     }
 };

@@ -3,6 +3,7 @@
 
 /* IMPORTS */
 const _util = require("util");
+const rn = require('random-number');
 
 /* INFRA */
 var m = null;
@@ -71,6 +72,18 @@ module.exports = {
         setTimeout(_ => {
             process.nextTick(callback);
         }, timeout);
+    },
+    // generate random alphanumeric key
+    rand_id: (length = 10) => {
+        var key = "";
+        var chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for (var i = 0; i < length; i++)
+            key += chars[rn({
+                min: 0,
+                max: chars.length - 1,
+                integer: true
+            })];
+        return key;
     },
     api: {}
 };
