@@ -1,7 +1,7 @@
 # node-scaffold
 
 Scaffold (skeleton) code for a web application stack built with Node.js, Express, MongoDB, WebSockets, and block.js.
-Built for the IEEE CS [ticket exchange project](https://github.com/anuvgupta/ticket-xc-skel) and [nestor](https://github.com/nestor).
+Built for the IEEE CS [ticket exchange project](https://github.com/anuvgupta/ticket-xc-skel), [nestor](https://github.com/nestor), and much more...
 
 ## configuration
 
